@@ -1,0 +1,3 @@
+[run]
+source = restapis
+omit = restapis/test*
