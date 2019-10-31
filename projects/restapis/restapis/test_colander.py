@@ -42,4 +42,8 @@ def test_api_using_colander():
     mapping1 = Person().serialize(correct2)
 
     assert (mapping1 == correct1)
-    assert (mapping1 == correct2)
+    assert (mapping1 == correct2)   #Error
+
+    mapping2 = Person().deserialize(correct1)
+    assert (mapping2 == correct2)
+    assert (mapping2 == correct1) #Error
