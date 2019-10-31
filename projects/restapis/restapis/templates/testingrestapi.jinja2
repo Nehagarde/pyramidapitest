@@ -1,0 +1,24 @@
+
+{% block content %}
+<div class="content">
+  <h1><span class="font-semi-bold">Pyramid</span> <span class="smaller">Testing Template</span></h1>
+   Person  Details:
+   <br/>
+   Name: {{name}}
+   <br/>
+   Age: {{age}}
+   <br/>
+   Friends:
+   <ul>
+       {% for friend in friends %}
+            <li> {{friend[0]}} - {{friend[1]}} </li>
+       {% endfor %}
+   </ul>
+   Phones:
+   <ul>
+       {% for phone in phones %}
+            <li>{{phone['location']}} - {{phone['number']}}</li>
+       {% endfor %}
+   </ul>
+</div>
+{% endblock content %}

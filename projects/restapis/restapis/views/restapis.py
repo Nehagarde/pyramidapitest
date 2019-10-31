@@ -1,29 +1,26 @@
-from pyramid.view import view_config
+from pyramid.config import Configurator
+from waitress import serve
 from pyramid.response import Response
-from collections import defaultdict
+import sqlite3
+from pyramid.view import view_config
 
-from sqlalchemy.exc import DBAPIError
-from .. import models
-
-from cornice import Service
-
-
-user_info = Service(name='users',
-                    path='/{username}/info',
-                    description='Get and set user data.')
-
-_USERS = defaultdict(dict)
-
-@user_info.get()
-def get_info(request):
-    """Returns the public information about a **user**.
-
-    If the user does not exists, returns an empty dataset.
-    """
-    username = request.matchdict['username']
-    return _USERS[username]
+@view_config(route_name='restapis.homeview',renderer='../templates/testingrestapi.jinja2')
+def homeview(request):
+    return {
+         'name': 'keith',
+         'age': '20',
+         'friends': [('1', 'jim'), ('2', 'bob'), ('3', 'joe'), ('4', 'fred')],
+         'phones': [{'location': 'home', 'number': '555-1212'},
+                    {'location': 'work', 'number': '555-8989'}],
+    }
 
 
-db_err_msg = """\
-Err
-"""
+
+def homeview1():
+    return {
+         'name': 'keith',
+         'age': '20',
+         'friends': [('1', 'jim'), ('2', 'bob'), ('3', 'joe'), ('4', 'fred')],
+         'phones': [{'location': 'home', 'number': '555-1212'},
+                    {'location': 'work', 'number': '555-8989'}],
+    }
