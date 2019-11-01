@@ -45,10 +45,14 @@ def homeview(request):
     }
 
     schema = Person()
-    json_schema = schema.deserialize(json_obj1)
-    #json_schema = schema.deserialize(json_obj2)
 
-    return schema.serialize(json_obj1)
+    try:
+        json_schema = schema.deserialize(json_obj1)
+        #json_schema = schema.deserialize(json_obj2)
+    except colander.Invalid as e:
+        return str(e)
+    else:
+        return schema.serialize(json_obj1)
 
 
 
